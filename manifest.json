@@ -1,0 +1,25 @@
+{
+  "name": "선샤인 FC",
+  "short_name": "선샤인FC",
+  "description": "선샤인FC 조기축구팀 공식 페이지",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a1628",
+  "theme_color": "#0a1628",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "images/team1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/team1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
