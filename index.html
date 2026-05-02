@@ -369,9 +369,9 @@
     .squad-table-wrap {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      max-width: 100%;
+      width: 100%;
     }
-    .squad-table { font-size: .82rem; min-width: 420px; }
+    .squad-table { font-size: .82rem; min-width: 420px; margin-right: 12px; }
     .squad-table th { font-size: .78rem; padding: 8px 6px; white-space: nowrap; }
     .squad-table td { padding: 5px 6px; }
     .squad-table td:first-child,
@@ -669,13 +669,15 @@
       .card { padding: 14px; margin-bottom: 12px; overflow: hidden; }
       .card-title { font-size: 1rem; }
 
-      /* Squad table: tighter on mobile */
-      .squad-table { min-width: 360px; }
-      .squad-table th { font-size: .7rem; padding: 7px 4px; }
-      .squad-table td { padding: 4px 3px; }
-      .squad-table td:first-child,
-      .squad-table th:first-child { font-size: .8rem; padding-left: 6px; min-width: 64px; }
-      .pos-select { width: 58px; font-size: .72rem; padding: 3px 1px; }
+      /* Squad table: fixed layout so table always fits inside card */
+      .squad-table { min-width: 0; table-layout: fixed; width: 100%; margin-right: 0; }
+      .squad-table th { font-size: .7rem; padding: 7px 2px; min-width: 0 !important; }
+      .squad-table td { padding: 4px 2px; }
+      .squad-table th:first-child { font-size: .75rem; padding-left: 6px; width: 25%; min-width: 0 !important; }
+      .squad-table td:first-child { font-size: .75rem; padding-left: 6px; }
+      .squad-table .q-header { width: 16.75%; min-width: 0 !important; }
+      .squad-table th:last-child { width: 8%; min-width: 0 !important; padding: 7px 3px; }
+      .pos-select { width: 100%; box-sizing: border-box; font-size: .7rem; padding: 3px 0; }
 
       /* Intro */
       .intro-hero img { height: 170px; }
