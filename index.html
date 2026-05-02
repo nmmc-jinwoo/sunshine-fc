@@ -536,7 +536,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 900;
       color: white;
       margin: 0 auto;
@@ -545,17 +545,22 @@
     .dot-circle.gk { background: var(--blue); border-color: white; }
     .dot-circle.empty { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.25); border-style: dashed; }
     .dot-name {
-      font-size: 13px;
+      font-size: 12px;
       color: white;
       font-weight: 700;
       text-shadow: 0 1px 3px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.8);
       margin-top: 3px;
       white-space: nowrap;
-      max-width: 72px;
+      max-width: 96px;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .dot-empty-name { color: rgba(255,255,255,.4); }
+    .dot-merch-label {
+      font-size: .9em;
+      font-weight: 800;
+      color: #d7c6ff;
+    }
 
     /* ── Records Page ── */
     .match-result-header {
@@ -714,8 +719,8 @@
       .player-check-list { grid-template-columns: 1fr 1fr; max-height: 200px; }
 
       /* Formation dots */
-      .dot-circle { width: 44px; height: 44px; font-size: 9.5px; }
-      .dot-name { font-size: 11.5px; max-width: 58px; }
+      .dot-circle { width: 44px; height: 44px; font-size: 9px; }
+      .dot-name { font-size: 10.5px; max-width: 88px; }
 
       /* Stats */
       .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -1473,7 +1478,7 @@ function renderFormationDisplay(match, quarter) {
   const posMap = {};
   participants.forEach(p => {
     const pos = (match.positions||{})[p.key] || {};
-    if (pos[quarter]) posMap[pos[quarter]] = p.name;
+    if (pos[quarter]) posMap[pos[quarter]] = { name: p.name, type: p.type };
   });
 
   const dupes = {};
@@ -1489,8 +1494,10 @@ function renderFormationDisplay(match, quarter) {
 
   const dots = POSITIONS.map(pos => {
     const c = POS_COORDS[pos];
-    const name = posMap[pos];
-    const filled = !!name;
+    const player = posMap[pos];
+    const filled = !!player;
+    const name = player?.name || '';
+    const isMerch = player?.type === 'merch';
     const isDupe = dupes[pos] > 1;
     const circleColor = !filled ? 'rgba(255,255,255,.08)' : pos==='GK' ? '#1565c0' : isDupe ? '#b71c1c' : '#0a1628';
     const borderColor = !filled ? 'rgba(255,255,255,.25)' : pos==='GK' ? 'white' : isDupe ? '#ff5252' : '#f5c518';
@@ -1501,7 +1508,7 @@ function renderFormationDisplay(match, quarter) {
              style="background:${circleColor};border-color:${borderColor};border-style:${borderStyle};">
           ${pos}
         </div>
-        <div class="dot-name ${!filled?'dot-empty-name':''}">${name || ''}</div>
+        <div class="dot-name ${!filled?'dot-empty-name':''}">${name}${isMerch ? ' <span class="dot-merch-label">(용병)</span>' : ''}</div>
       </div>`;
   }).join('');
 
