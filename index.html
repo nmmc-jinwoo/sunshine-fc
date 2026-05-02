@@ -371,19 +371,26 @@
       -webkit-overflow-scrolling: touch;
       width: 100%;
     }
-    .squad-table { font-size: .82rem; min-width: 420px; margin-right: 12px; }
+    .squad-table { font-size: .82rem; min-width: 420px; margin-right: 12px; table-layout: fixed; }
     .squad-table th { font-size: .78rem; padding: 8px 6px; white-space: nowrap; }
     .squad-table td { padding: 5px 6px; }
     .squad-table td:first-child,
-    .squad-table th:first-child { white-space: nowrap; min-width: 72px; }
+    .squad-table th:first-child { white-space: nowrap; min-width: 72px; width: 25%; }
+    .squad-table .q-header,
+    .squad-table tbody td:nth-child(n+2):nth-child(-n+5) { width: 16.75%; }
+    .squad-table th:last-child,
+    .squad-table td:last-child { width: 8%; }
     .pos-select {
+      display: block;
       padding: 4px 2px;
       border: 1.5px solid var(--gray200);
       border-radius: 6px;
       font-size: .78rem;
       font-weight: 700;
       cursor: pointer;
-      width: 72px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
       text-align: center;
       background: white;
       outline: none;
@@ -672,12 +679,12 @@
       /* Squad table: fixed layout so table always fits inside card */
       .squad-table { min-width: 0; table-layout: fixed; width: 100%; margin-right: 0; }
       .squad-table th { font-size: .7rem; padding: 7px 2px; min-width: 0 !important; }
-      .squad-table td { padding: 4px 2px; }
+      .squad-table td { padding: 4px 4px; }
       .squad-table th:first-child { font-size: .75rem; padding-left: 6px; width: 25%; min-width: 0 !important; }
       .squad-table td:first-child { font-size: .75rem; padding-left: 6px; }
       .squad-table .q-header { width: 16.75%; min-width: 0 !important; }
       .squad-table th:last-child { width: 8%; min-width: 0 !important; padding: 7px 3px; }
-      .pos-select { width: 100%; box-sizing: border-box; font-size: .7rem; padding: 3px 0; }
+      .pos-select { font-size: .7rem; padding: 5px 2px; }
 
       /* Intro */
       .intro-hero img { height: 170px; }
@@ -705,9 +712,6 @@
 
       /* Player check list */
       .player-check-list { grid-template-columns: 1fr 1fr; max-height: 200px; }
-
-      /* Squad table dropdowns */
-      .pos-select { width: 64px; font-size: .74rem; }
 
       /* Formation dots */
       .dot-circle { width: 44px; height: 44px; font-size: 9.5px; }
